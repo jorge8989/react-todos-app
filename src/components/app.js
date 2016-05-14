@@ -32,7 +32,7 @@ export default class App extends React.Component {
         <h1>Todo App</h1>
         <CreateTodo createTask={this.createTask.bind(this)}/>
         <br/>
-        <Todos todos={this.state.todos} toggleTask={this.toggleTask.bind(this)}/>
+        <Todos todos={this.state.todos} toggleTask={this.toggleTask.bind(this)} deleteTask={this.deleteTask.bind(this)}/>
       </div>
     );
   }
@@ -47,6 +47,11 @@ export default class App extends React.Component {
   createTask(task) {
      this.state.todos.push({task: task, isCompleted: false});
      this.setState({ todos: this.state.todos });
+  }
+  
+  deleteTask(task) {
+    this.state.todos = _.without(this.state.todos, task);
+    this.setState({ todos: this.state.todos });
   }
   
 }

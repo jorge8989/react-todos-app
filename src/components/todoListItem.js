@@ -37,6 +37,7 @@ export default class TodoListItem extends React.Component {
   }
   
   renderActionSection() {
+    const { task } = this.props;
     if (this.state.isEditing) {
       return (
         <td>
@@ -48,7 +49,7 @@ export default class TodoListItem extends React.Component {
       return (
         <td>
           <button class="btn btn-primary"onClick={this.onEditClick.bind(this)}>Edit</button>
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-danger" onClick={this.props.handleDelete.bind(this, task)}>Delete</button>
         </td>
       )
     }
