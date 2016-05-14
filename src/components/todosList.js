@@ -3,9 +3,19 @@ import TodoListItem from "./todoListItem";
 import _ from 'lodash';
 
 export default class Todos extends React.Component {
+  
+  
   renderItems() {
-    return _.map(this.props.todos, (todo, index) => <TodoListItem key={index} {...todo} />)
+    const props = _.omit(this.props, 'todos');
+    
+    return _.map(this.props.todos, (todo, index) => <TodoListItem key={index} handleToggle={this.handleToggle.bind(this)} {...todo}/>)
   }
+  
+  handleToggle(task) {
+    const foundTask = _.find(this.props.todos, {task: task})
+    this.props.toggleTask(foundTask)
+  }
+  
   render() {
     return (
       <div>
@@ -13,7 +23,6 @@ export default class Todos extends React.Component {
           <thead>
             <tr>
               <th>Task</th>
-              <th>State</th>
               <th>Actions</th>
             </tr>
           </thead>

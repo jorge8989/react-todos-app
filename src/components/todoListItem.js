@@ -1,7 +1,9 @@
 import React from "react";
+import _ from 'lodash';
+
 export default class TodoListItem extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isEditing: false
     }
@@ -9,9 +11,8 @@ export default class TodoListItem extends React.Component {
   render() {
     return(
       <tr>
-        <td>{this.props.task}</td>
-        <td>{this.props.isCompleted ? 'Completed' : 'Not Completed'}</td>
-        {this.renderActionSection()}
+        { this.renderTaskSection() }
+        { this.renderActionSection() }
       </tr>
     )
   }
@@ -24,12 +25,23 @@ export default class TodoListItem extends React.Component {
     this.setState({ isEditing: false })
   }
   
+  renderTaskSection() {
+    const { task, isCompleted } = this.props;
+    const taskStyle = {
+      color: isCompleted ? 'green' : 'red',
+      cursor: 'pointer'
+    }
+    return (
+      <td style={ taskStyle } onClick={this.props.handleToggle.bind(this, task)}>{ task }</td>
+    );
+  }
+  
   renderActionSection() {
     if (this.state.isEditing) {
       return (
         <td>
           <button class="btn btn-primary">Save</button>
-          <button class="btn btn-default"onClick={this.onCancelCLick.bind(this)}>Cancel</button>
+          <button class="btn btn-default" onClick={this.onCancelCLick.bind(this)}>Cancel</button>
         </td>
       )
     } else {

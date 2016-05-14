@@ -1,20 +1,18 @@
 import React from "react";
 import Todos from "./todosList";
+import _ from 'lodash';
 import CreateTodo from "./createTodos";
 
 const todos = [
   {
-    id: 1,
     task: 'practice react',
     isCompleted: true
   },
   {
-    id: 2,
     task: 'Eat Dinner',
     isCompleted: false
   },
   {
-    id: 3,
     task: 'Deliver Job',
     isCompleted: false
   }
@@ -31,11 +29,24 @@ export default class App extends React.Component {
   render() {
     return (
       <div class="container">
-        <h1>Todo List</h1>
-        <CreateTodo />
+        <h1>Todo App</h1>
+        <CreateTodo createTask={this.createTask.bind(this)}/>
         <br/>
-        <Todos todos={this.state.todos}/>
+        <Todos todos={this.state.todos} toggleTask={this.toggleTask.bind(this)}/>
       </div>
     );
   }
+  
+  toggleTask(task) {
+    task.isCompleted = !task.isCompleted
+    this.setState({ todos: this.state.todos })
+  }
+  
+  
+  
+  createTask(task) {
+     this.state.todos.push({task: task, isCompleted: false});
+     this.setState({ todos: this.state.todos });
+  }
+  
 }
