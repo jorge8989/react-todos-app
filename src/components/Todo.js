@@ -1,13 +1,21 @@
 import React, { PropTypes } from 'react'
 
 const Todo = ({completed, text }) => (
-  <li
-    style={{
-      textDecoration: completed ? 'line-through' : 'none'
-    }}
-  >
+  <tr>
+    <td
+      style={{
+        color: completed ? 'green' : 'red',
+        cursor: 'pointer' 
+     }}
+    >
     {text}
-  </li>
+    </td>
+    <td>
+      <button class="btn btn-danger">
+        delete
+      </button>
+    </td>
+  </tr>
 )
 
 Todo.propTypes = {

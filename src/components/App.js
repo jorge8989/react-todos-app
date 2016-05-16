@@ -2,7 +2,8 @@ import React from 'react'
 import VisibleTodoList from '../containers/VisibleTodoList'
 
 const App = () => (
-  <div>
+  <div class="container">
+    <h1>Todo List</h1>
     <VisibleTodoList />
   </div>
 )

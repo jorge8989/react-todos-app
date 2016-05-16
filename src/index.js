@@ -17,9 +17,9 @@ let unsubscribe = store.subscribe(() =>
 )
 
 // Dispatch some actions
-store.dispatch(addTodo('Learn about actions'))
-store.dispatch(addTodo('Learn about reducers'))
-store.dispatch(addTodo('Learn about store'))
+store.dispatch(addTodo('Learn about actions', 1))
+store.dispatch(addTodo('Learn about reducers', 2))
+store.dispatch(addTodo('Learn about store', 3))
 
 unsubscribe()
 
