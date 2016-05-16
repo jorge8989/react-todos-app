@@ -1,5 +1,37 @@
-import React from 'react';
+import React from 'react'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import todoApp from './Reducers'
 import { render } from 'react-dom';
-import App from './components/app';
+import App from './components/App';
+import { addTodo, completeTodo, setVisibilityFilter, VisibilityFilters } from './Actions'
 
-render(<App />, document.getElementById('app'));
+
+
+let store = createStore(todoApp);
+
+console.log(store.getState())
+
+let unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+)
+
+// Dispatch some actions
+store.dispatch(addTodo('Learn about actions'))
+store.dispatch(addTodo('Learn about reducers'))
+store.dispatch(addTodo('Learn about store'))
+store.dispatch(completeTodo(0))
+store.dispatch(completeTodo(1))
+store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
+
+unsubscribe()
+
+
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+   document.getElementById('app')
+  
+);
