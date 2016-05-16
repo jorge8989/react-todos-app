@@ -27,7 +27,7 @@ function todos(state = [], action) {
       return state.map(todo => {
         if (todo.id === action.id) {
           return Object.assign({}, todo, {
-            completed: true
+            completed: !todo.completed
           })
         }
         return todo
