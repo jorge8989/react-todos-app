@@ -1,5 +1,6 @@
+import _ from 'lodash';
 import { combineReducers } from 'redux'
-import { ADD_TODO, COMPLETE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './Actions'
+import { ADD_TODO, COMPLETE_TODO, DELETE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './Actions'
 const { SHOW_ALL } = VisibilityFilters
 
 function visibilityFilter(state = SHOW_ALL, action) {
@@ -23,14 +24,16 @@ function todos(state = [], action) {
         }
       ]
     case COMPLETE_TODO:
-      return state.map((todo, index) => {
-        if (index === action.index) {
+      return state.map(todo => {
+        if (todo.id === action.id) {
           return Object.assign({}, todo, {
             completed: true
           })
         }
         return todo
       })
+    case DELETE_TODO:
+      return _.without(state, _.find(state, {id: action.id}))
     default:
       return state
   }
