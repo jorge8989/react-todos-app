@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { combineReducers } from 'redux'
-import { ADD_TODO, COMPLETE_TODO, DELETE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './Actions'
+import { ADD_TODO, COMPLETE_TODO, DELETE_TODO, SET_VISIBILITY_FILTER, 
+  TOGGLE_EDITING_STATE, VisibilityFilters } from './Actions'
 const { SHOW_ALL } = VisibilityFilters
 
 function visibilityFilter(state = SHOW_ALL, action) {
@@ -12,15 +13,17 @@ function visibilityFilter(state = SHOW_ALL, action) {
   }
 }
 
+
 function todos(state = [], action) {
   switch (action.type) {
     case ADD_TODO:
       return [
         ...state,
         {
-          id: action.id,
+          id: state.length+1,
           text: action.text,
-          completed: false
+          completed: false,
+          editing: false
         }
       ]
     case COMPLETE_TODO:
@@ -32,6 +35,15 @@ function todos(state = [], action) {
         }
         return todo
       })
+    case TOGGLE_EDITING_STATE:
+      return state.map(todo => {
+        if (todo.id === action.id) {
+          return Object.assign({}, todo, {
+            editing: !todo.editing
+        })
+      }
+      return todo
+    })
     case DELETE_TODO:
       return _.without(state, _.find(state, {id: action.id}))
     default:

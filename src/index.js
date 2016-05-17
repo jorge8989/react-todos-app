@@ -5,7 +5,8 @@ import { Provider } from 'react-redux'
 import todoApp from './Reducers'
 import { render } from 'react-dom';
 import App from './components/App';
-import { addTodo, completeTodo, deleteTodo, setVisibilityFilter, VisibilityFilters } from './Actions'
+import { addTodo, completeTodo, deleteTodo, setVisibilityFilter, 
+  toggleEditingState, VisibilityFilters } from './Actions'
 
 
 
@@ -18,12 +19,13 @@ let unsubscribe = store.subscribe(() =>
 )
 
 // Dispatch some actions
-store.dispatch(addTodo('Learn about actions', 1))
-store.dispatch(addTodo('Learn about reducers', 2))
-store.dispatch(addTodo('Learn about store', 3))
+store.dispatch(addTodo('Learn about actions'))
+store.dispatch(addTodo('Learn about reducers'))
+store.dispatch(addTodo('Learn about store'))
 store.dispatch(deleteTodo(3))
-store.dispatch(addTodo('Create todo app', 4))
-store.dispatch(completeTodo(4))
+store.dispatch(addTodo('Create todo app'))
+store.dispatch(completeTodo(3))
+store.dispatch(toggleEditingState(1))
 
 
 //unsubscribe()

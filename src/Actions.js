@@ -6,6 +6,7 @@ export const ADD_TODO = 'ADD_TODO'
 export const COMPLETE_TODO = 'COMPLETE_TODO'
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 export const DELETE_TODO = 'DELETE_TODO'
+export const TOGGLE_EDITING_STATE = 'TOGGLE_EDITING_STATE'
 
 /*
  * other constants
@@ -21,8 +22,8 @@ export const VisibilityFilters = {
  * action creators
  */
 
-export function addTodo(text, id) {
-  return { type: ADD_TODO, text, id }
+export function addTodo(text) {
+  return { type: ADD_TODO, text }
 }
 
 export function completeTodo(id) {
@@ -35,4 +36,8 @@ export function setVisibilityFilter(filter) {
 
 export function deleteTodo(id) {
   return { type: DELETE_TODO, id }
+}
+
+export function toggleEditingState(id) {
+  return { type: TOGGLE_EDITING_STATE, id }
 }

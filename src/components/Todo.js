@@ -1,6 +1,20 @@
 import React, { PropTypes } from 'react'
 
-const Todo = ({completed, text, onClick, onDeleteClick }) => (
+const todoTextOrInput = ({ text, editing }) => {
+    if ( editing ) {
+      return(
+        <input type="text" value={ text } class="form-control"/>
+      )
+    } else {
+      return( 
+        <span>
+          { text }
+        </span>
+       )
+    }
+}
+
+const Todo = ({editing, completed, text, onClick, onDeleteClick }) => (
   <tr>
     <td
       style={{
@@ -9,7 +23,7 @@ const Todo = ({completed, text, onClick, onDeleteClick }) => (
      }}
      onClick={onClick}
     >
-    {text}
+      { todoTextOrInput({text, editing}) }
     </td>
     <td>
       <button class="btn btn-danger" onClick={onDeleteClick}>
