@@ -6,11 +6,8 @@ const todoTextOrInput = ({ text, editing }) => {
     if ( editing ) {
       return(
         <input type="text" 
+        defaultValue={text}
         ref={node => { editInput = node } }
-        value={ text } 
-        onChange={() => {
-          editInput.value=editInput.value;
-        }}
         class="form-control"/>
       )
     } else {
@@ -22,18 +19,20 @@ const todoTextOrInput = ({ text, editing }) => {
     }
 }
 
-const Todo = ({editing, completed, text, onClick, onDeleteClick }) => (
+const Todo = ({editing, completed, text, onClick, onDeleteClick, onEditClick }) => (
   <tr>
     <td
       style={{
         color: completed ? 'green' : 'red',
         cursor: 'pointer' 
      }}
-     onClick={onClick}
+     onClick={  editing ? null : onClick  }
     >
-      { todoTextOrInput({text, editing}) }
+      { todoTextOrInput({text, editing, onClick}) }
     </td>
     <td>
+      <button class="btn btn-primary" onClick={onEditClick}>Edit</button>
+      
       <button class="btn btn-danger" onClick={onDeleteClick}>
         delete
       </button>
