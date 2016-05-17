@@ -22,11 +22,13 @@ let unsubscribe = store.subscribe(() =>
 store.dispatch(addTodo('Learn about actions'))
 store.dispatch(addTodo('Learn about reducers'))
 store.dispatch(addTodo('Learn about store'))
+store.dispatch(addTodo('Build an app with Redux'))
 //store.dispatch(deleteTodo(3))
 //store.dispatch(addTodo('Create todo app'))
-//store.dispatch(completeTodo(3))
+store.dispatch(completeTodo(1))
+store.dispatch(completeTodo(2))
+store.dispatch(completeTodo(3))
 //store.dispatch(toggleEditingState(1))
-store.dispatch(updateTodo(2, 'hola'))
 
 
 //unsubscribe()

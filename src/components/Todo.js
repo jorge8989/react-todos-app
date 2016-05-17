@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 
+let editInput;
 
 const todoTextOrInput = ({ text, editing }) => {
     
@@ -7,6 +8,7 @@ const todoTextOrInput = ({ text, editing }) => {
       return(
         <input type="text" 
         defaultValue={text}
+        ref={(ref) => { editInput = ref }}
         class="form-control"/>
       )
     } else {
@@ -22,7 +24,7 @@ const actionsColumn = ({ editing, id, onEditClick, onDeleteClick, onSaveClick })
   if ( editing ) {
     return(
       <div>
-        <button class="btn btn-primary" onClick={() => onSaveClick(id, inputValue().value)}>Save</button>
+        <button class="btn btn-primary" onClick={() => onSaveClick(id, editInput.value)}>Save</button>
         <button class="btn btn-default" onClick={onEditClick}>Cancel</button>
       </div>
     ) 
