@@ -7,6 +7,7 @@ export const COMPLETE_TODO = 'COMPLETE_TODO'
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 export const DELETE_TODO = 'DELETE_TODO'
 export const TOGGLE_EDITING_STATE = 'TOGGLE_EDITING_STATE'
+export const UPDATE_TODO = 'UPDATE_TODO'
 
 /*
  * other constants
@@ -40,4 +41,8 @@ export function deleteTodo(id) {
 
 export function toggleEditingState(id) {
   return { type: TOGGLE_EDITING_STATE, id }
+}
+
+export function updateTodo(id, newtext) {
+  return { type: UPDATE_TODO, id, newtext }
 }

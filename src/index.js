@@ -6,7 +6,7 @@ import todoApp from './Reducers'
 import { render } from 'react-dom';
 import App from './components/App';
 import { addTodo, completeTodo, deleteTodo, setVisibilityFilter, 
-  toggleEditingState, VisibilityFilters } from './Actions'
+  toggleEditingState, VisibilityFilters, updateTodo } from './Actions'
 
 
 
@@ -26,6 +26,7 @@ store.dispatch(addTodo('Learn about store'))
 //store.dispatch(addTodo('Create todo app'))
 //store.dispatch(completeTodo(3))
 //store.dispatch(toggleEditingState(1))
+store.dispatch(updateTodo(2, 'hola'))
 
 
 //unsubscribe()

@@ -1,13 +1,12 @@
 import React, { PropTypes } from 'react'
 
+
 const todoTextOrInput = ({ text, editing }) => {
-    let editInput;
     
     if ( editing ) {
       return(
         <input type="text" 
         defaultValue={text}
-        ref={node => { editInput = node } }
         class="form-control"/>
       )
     } else {
@@ -19,11 +18,11 @@ const todoTextOrInput = ({ text, editing }) => {
     }
 }
 
-const actionsColumn = ({ editing, onEditClick, onDeleteClick }) => {
+const actionsColumn = ({ editing, id, onEditClick, onDeleteClick, onSaveClick }) => {
   if ( editing ) {
     return(
       <div>
-        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-primary" onClick={() => onSaveClick(id, inputValue().value)}>Save</button>
         <button class="btn btn-default" onClick={onEditClick}>Cancel</button>
       </div>
     ) 
@@ -37,7 +36,7 @@ const actionsColumn = ({ editing, onEditClick, onDeleteClick }) => {
     }
  }
 
-const Todo = ({editing, completed, text, onClick, onDeleteClick, onEditClick }) => (
+const Todo = ({editing, id, completed, text, onClick, onDeleteClick, onEditClick, onSaveClick }) => (
   <tr>
     <td
       style={{
@@ -49,7 +48,7 @@ const Todo = ({editing, completed, text, onClick, onDeleteClick, onEditClick }) 
       { todoTextOrInput({ text, editing }) }
     </td>
     <td>
-      { actionsColumn({ editing, onEditClick, onDeleteClick })}
+      { actionsColumn({ editing, id, onEditClick, onDeleteClick, onSaveClick })}
     </td>
   </tr>
 )
