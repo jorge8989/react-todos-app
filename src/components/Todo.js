@@ -19,6 +19,24 @@ const todoTextOrInput = ({ text, editing }) => {
     }
 }
 
+const actionsColumn = ({ editing, onEditClick, onDeleteClick }) => {
+  if ( editing ) {
+    return(
+      <div>
+        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-default" onClick={onEditClick}>Cancel</button>
+      </div>
+    ) 
+  } else {
+      return(
+        <div>
+          <button class="btn btn-primary" onClick={onEditClick}>Edit</button>
+          <button class="btn btn-danger" onClick={onDeleteClick}>delete</button>
+        </div>
+      )
+    }
+ }
+
 const Todo = ({editing, completed, text, onClick, onDeleteClick, onEditClick }) => (
   <tr>
     <td
@@ -28,14 +46,10 @@ const Todo = ({editing, completed, text, onClick, onDeleteClick, onEditClick }) 
      }}
      onClick={  editing ? null : onClick  }
     >
-      { todoTextOrInput({text, editing, onClick}) }
+      { todoTextOrInput({ text, editing }) }
     </td>
     <td>
-      <button class="btn btn-primary" onClick={onEditClick}>Edit</button>
-      
-      <button class="btn btn-danger" onClick={onDeleteClick}>
-        delete
-      </button>
+      { actionsColumn({ editing, onEditClick, onDeleteClick })}
     </td>
   </tr>
 )
