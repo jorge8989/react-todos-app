@@ -1,9 +1,17 @@
 import React, { PropTypes } from 'react'
 
 const todoTextOrInput = ({ text, editing }) => {
+    let editInput;
+    
     if ( editing ) {
       return(
-        <input type="text" value={ text } class="form-control"/>
+        <input type="text" 
+        ref={node => { editInput = node } }
+        value={ text } 
+        onChange={() => {
+          editInput.value=editInput.value;
+        }}
+        class="form-control"/>
       )
     } else {
       return( 
