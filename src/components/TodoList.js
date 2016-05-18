@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import Todo from './Todo'
 
-const TodoList = ({ todos, onTodoClick, onDeleteClick, onEditClick, onSaveClick }) => (
+const TodoList = ({ todos, onTodoClick, onDeleteClick, onEditClick, validateEditedTask, updateTask }) => (
   <table class="table table-striped">
     <thead>
       <tr>
@@ -16,7 +16,8 @@ const TodoList = ({ todos, onTodoClick, onDeleteClick, onEditClick, onSaveClick 
           onClick={() => onTodoClick(todo.id)}
           onDeleteClick={() => onDeleteClick(todo.id)}
           onEditClick={() => onEditClick(todo.id)}
-          onSaveClick={onSaveClick}
+          validateEditedTask={validateEditedTask}
+          updateTask={updateTask}
           {...todo}
         />
       )}

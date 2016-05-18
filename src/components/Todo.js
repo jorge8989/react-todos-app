@@ -1,9 +1,20 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { updateTodo } from '../Actions';
+import store from '../index.js'
+
+
+const onSaveClickButton = (id, newtext, validateEditedTask) => {
+  validateEditedTask(newtext)
+  let errors = store.getState().errors
+  if (errors === null) {
+    store.dispatch(updateTodo(id, newtext))
+  }
+}
 
 let editInput;
 
 const todoTextOrInput = ({ text, editing }) => {
-    
     if ( editing ) {
       return(
         <input type="text" 
@@ -20,11 +31,11 @@ const todoTextOrInput = ({ text, editing }) => {
     }
 }
 
-const actionsColumn = ({ editing, id, onEditClick, onDeleteClick, onSaveClick }) => {
+const actionsColumn = ({ editing, id, onEditClick, onDeleteClick, validateEditedTask }) => {
   if ( editing ) {
     return(
       <div>
-        <button class="btn btn-primary" onClick={() => onSaveClick(id, editInput.value)}>Save</button>
+        <button class="btn btn-primary" onClick={() => onSaveClickButton( id, editInput.value, validateEditedTask )} >Save</button>
         <button class="btn btn-default" onClick={onEditClick}>Cancel</button>
       </div>
     ) 
@@ -38,7 +49,7 @@ const actionsColumn = ({ editing, id, onEditClick, onDeleteClick, onSaveClick })
     }
  }
 
-const Todo = ({editing, id, completed, text, onClick, onDeleteClick, onEditClick, onSaveClick }) => (
+const Todo = ({editing, id, completed, text, onClick, onDeleteClick, onEditClick, validateEditedTask}) => (
   <tr>
     <td
       style={{
@@ -50,14 +61,15 @@ const Todo = ({editing, id, completed, text, onClick, onDeleteClick, onEditClick
       { todoTextOrInput({ text, editing }) }
     </td>
     <td>
-      { actionsColumn({ editing, id, onEditClick, onDeleteClick, onSaveClick })}
+      { actionsColumn({ editing, id, onEditClick, onDeleteClick, validateEditedTask })}
     </td>
   </tr>
 )
 
 Todo.propTypes = {
   completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  validateEditedTask: PropTypes.func.isRequired
 }
 
 export default Todo

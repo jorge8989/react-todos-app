@@ -16,6 +16,7 @@ const getVisibleTodos = (todos, filter) => {
 
 const mapStateToProps = (state) => {
   return {
+    errors: state.errors,
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
   }
 }
@@ -31,9 +32,11 @@ const mapDispatchToProps = (dispatch) => {
     onDeleteClick: (id) => {
       dispatch(deleteTodo(id))
     },
-    onSaveClick: (id, newtext) => {
+    validateEditedTask: (newtext) => {
       dispatch(validateTodo(newtext))
-      dispatch(updateTodo(id, newtext))
+    },
+    updateTask: (id, newtext) => {
+      dispatch(updateTask(id, newtext))  
     }
   }
 }

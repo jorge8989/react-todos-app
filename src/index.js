@@ -34,7 +34,7 @@ store.dispatch(validateTodo('something'))
 
 //unsubscribe()
 
-
+export default store
 
 render(
   <Provider store={store}>
