@@ -13,9 +13,7 @@ let AddTodo = ({ dispatch }) => {
       input.value = '';
     }}>
      <div class="form-group">
-        <input ref={node => {
-          input = node
-        }} class="form-control"/>
+        <input ref={ ref => { input = ref } } class="form-control"/>
         <button class="btn btn-primary">
           Add Todo
         </button>

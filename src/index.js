@@ -6,7 +6,7 @@ import todoApp from './Reducers'
 import { render } from 'react-dom';
 import App from './components/App';
 import { addTodo, completeTodo, deleteTodo, setVisibilityFilter, 
-  toggleEditingState, VisibilityFilters, updateTodo } from './Actions'
+  toggleEditingState, VisibilityFilters, updateTodo, validateTodo } from './Actions'
 
 
 
@@ -28,6 +28,7 @@ store.dispatch(addTodo('Build an app with Redux'))
 store.dispatch(completeTodo(1))
 store.dispatch(completeTodo(2))
 store.dispatch(completeTodo(3))
+store.dispatch(validateTodo('something'))
 //store.dispatch(toggleEditingState(1))
 
 

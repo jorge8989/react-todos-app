@@ -8,6 +8,7 @@ export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 export const DELETE_TODO = 'DELETE_TODO'
 export const TOGGLE_EDITING_STATE = 'TOGGLE_EDITING_STATE'
 export const UPDATE_TODO = 'UPDATE_TODO'
+export const VALIDATE_TODO = 'VALIDATE_TODO'
 
 /*
  * other constants
@@ -45,4 +46,8 @@ export function toggleEditingState(id) {
 
 export function updateTodo(id, newtext) {
   return { type: UPDATE_TODO, id, newtext }
+}
+
+export function validateTodo( text ) {
+  return { type: VALIDATE_TODO, text }
 }

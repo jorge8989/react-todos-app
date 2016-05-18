@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { combineReducers } from 'redux'
 import { ADD_TODO, COMPLETE_TODO, DELETE_TODO, SET_VISIBILITY_FILTER, 
-  TOGGLE_EDITING_STATE, UPDATE_TODO, VisibilityFilters } from './Actions'
+  TOGGLE_EDITING_STATE, UPDATE_TODO, VALIDATE_TODO, VisibilityFilters } from './Actions'
 const { SHOW_ALL } = VisibilityFilters
 
 function visibilityFilter(state = SHOW_ALL, action) {
@@ -11,6 +11,17 @@ function visibilityFilter(state = SHOW_ALL, action) {
     default:
       return state
   }
+}
+
+function errors( state = null, action ) {
+  if ( action.type === VALIDATE_TODO ) {
+    if ( !action.text || action.text == '' ) {
+      return "Task can't be blank"
+    } else {
+      return null
+    }
+  }
+  return state;
 }
 
 
@@ -63,7 +74,8 @@ function todos(state = [], action) {
 
 const todoApp = combineReducers({
   visibilityFilter,
-  todos
+  todos,
+  errors
 })
 
 export default todoApp
