@@ -24,9 +24,9 @@ const todoTextOrInput = ({ text, editing }) => {
       )
     } else {
       return( 
-        <span>
+        <div>
           { text }
-        </span>
+        </div>
        )
     }
 }

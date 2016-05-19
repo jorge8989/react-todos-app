@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import Todo from './Todo'
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 const TodoList = ({ todos, onTodoClick, onDeleteClick, onEditClick, validateEditedTask, updateTask }) => (
   <table class="table table-striped">
@@ -21,6 +22,8 @@ const TodoList = ({ todos, onTodoClick, onDeleteClick, onEditClick, validateEdit
           {...todo}
         />
       )}
+      <tr>
+      </tr>
     </tbody>
   </table>
 )
